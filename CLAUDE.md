@@ -28,9 +28,21 @@ npm run typecheck            # tsc app + scripts
 npx expo lint                # inclui as regras do grid
 npm run audit:scale          # lista medidas fora da escala (rodar ao fim de cada fase)
 npx tsx scripts/shot.ts /rota out.png --height=844 --scale=2   # screenshot rápido (servidor rodando)
-npm run screenshots                 # 7 cenas em screenshots/ (390x844 @3x)
+npm run build                       # export web em dist/ (o que a Vercel publica)
+npm run screenshots                 # 8 cenas em screenshots/ (390x844 @3x)
 npm run screenshots -- --marketing  # moldura de iPhone em screenshots/marketing/ (1290x2796)
 ```
+
+## Deploy web (Vercel)
+
+- `app.json` → `web.output: "single"`: o build é uma SPA, com um único `index.html` que monta o Expo Router no navegador. Não há `experiments.baseUrl`; o app é servido na raiz.
+- `vercel.json` na raiz:
+  - `buildCommand: npx expo export -p web`, `outputDirectory: dist`, `framework: null`;
+  - `rewrites` de `/(.*)` para `/index.html`, para que rotas como `/conversas` e `/conversa/c1` funcionem ao abrir direto ou recarregar (a Vercel verifica arquivos reais antes, então `/_expo/...` e `/assets/...` saem normalmente);
+  - redirect de `/index.html` para `/`, porque o Expo Router não conhece o caminho `/index.html`.
+- Não há `app/index.tsx`: `/` resolve para `app/(tabs)/index.tsx`. Rotas inexistentes caem em `app/+not-found.tsx`.
+- Testar como em produção: `npm run build && npx serve -s dist` (o `-s` imita o rewrite da SPA).
+- Se um dia mudar para `web.output: "static"`, as rotas dinâmicas (`conversa/[id]`) vão precisar de `generateStaticParams` com os ids dos mocks.
 
 ## Tokens (theme/tokens.ts é a fonte única)
 

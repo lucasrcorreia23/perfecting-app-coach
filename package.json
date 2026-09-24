@@ -60,7 +60,8 @@
     "lint": "expo lint",
     "typecheck": "tsc --noEmit && tsc --noEmit -p scripts",
     "audit:scale": "tsx scripts/audit-scale.ts",
-    "screenshots": "tsx scripts/screenshots.ts"
+    "screenshots": "tsx scripts/screenshots.ts",
+    "build": "expo export -p web"
   },
   "private": true
 }
