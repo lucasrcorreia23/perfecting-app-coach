@@ -1,0 +1,98 @@
+import type { Comment, Mention } from '@/types/domain';
+
+import { daysAgo, ts } from './time';
+
+export const comments: Comment[] = [
+  {
+    id: 'k1',
+    conversationId: 'c1',
+    authorId: 'p4',
+    createdAt: daysAgo(0, '12:10'),
+    startSec: ts('27:02'),
+    endSec: ts('27:10'),
+    text: '@Vendas vejam como o Rafael segurou o preço e trocou o acabamento em vez de dar desconto.',
+    visibility: 'public',
+  },
+  {
+    id: 'k2',
+    conversationId: 'c1',
+    authorId: 'p4',
+    createdAt: daysAgo(0, '12:14'),
+    startSec: ts('19:48'),
+    endSec: ts('20:05'),
+    text: '@Rafael aqui valia reforçar a garantia de dez anos antes de falar o valor.',
+    visibility: 'private',
+  },
+  {
+    id: 'k3',
+    conversationId: 'c1',
+    authorId: 'p1',
+    createdAt: daysAgo(0, '12:40'),
+    startSec: ts('19:48'),
+    endSec: ts('20:05'),
+    text: '@Juliana boa! Vou testar essa ordem na próxima visita.',
+    visibility: 'private',
+  },
+  {
+    id: 'k4',
+    conversationId: 'c2',
+    authorId: 'p4',
+    createdAt: daysAgo(0, '10:02'),
+    startSec: ts('18:20'),
+    endSec: ts('18:40'),
+    text: '@Camila momento-chave: a objeção de troca precisava de uma pergunta antes da resposta.',
+    visibility: 'public',
+  },
+];
+
+/** Menções recebidas pela usuária logada (gestora). */
+export const mentions: Mention[] = [
+  {
+    id: 'n1',
+    conversationId: 'c1',
+    authorId: 'p1',
+    createdAt: daysAgo(0, '12:40'),
+    startSec: ts('19:48'),
+    endSec: ts('20:05'),
+    excerptSpeaker: 'Rafael Souza',
+    excerpt: 'Com a ilha e o acabamento em laca fosca, o projeto fica em quarenta e dois mil e oitocentos.',
+    text: '@Juliana boa! Vou testar essa ordem na próxima visita.',
+    read: false,
+  },
+  {
+    id: 'n2',
+    conversationId: 'c2',
+    authorId: 'p2',
+    createdAt: daysAgo(0, '11:20'),
+    startSec: ts('18:20'),
+    endSec: ts('18:40'),
+    excerptSpeaker: 'Henrique Lima',
+    excerpt: 'Oitenta e seis? Eu tava contando com pelo menos noventa e oito. Vi anúncios nesse valor.',
+    text: '@Juliana consigo liberar o bônus de troca nesse caso? Ele ficou bem interessado no cinza.',
+    read: false,
+  },
+  {
+    id: 'n3',
+    conversationId: 'c1',
+    authorId: 'p1',
+    createdAt: daysAgo(0, '11:02'),
+    startSec: ts('31:58'),
+    endSec: ts('32:15'),
+    excerptSpeaker: 'Marina Alves',
+    excerpt: 'Aliás, acho que vou fechar a cozinha hoje mesmo e a lavanderia a gente vê depois.',
+    text: '@Juliana fechou! Contrato da cozinha assinado, lavanderia fica para o mês que vem.',
+    read: true,
+  },
+  {
+    id: 'n4',
+    conversationId: 'c2',
+    authorId: 'p2',
+    createdAt: daysAgo(1, '18:05'),
+    startSec: ts('38:10'),
+    endSec: ts('38:20'),
+    excerptSpeaker: 'Henrique Lima',
+    excerpt: 'Uma última coisa: tem a cor cinza a pronta entrega?',
+    text: '@Gestão dá pra segurar a unidade cinza até sábado sem sinal?',
+    read: true,
+  },
+];
